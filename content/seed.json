@@ -295,13 +295,13 @@
     },
     "about.photo": {
       "id": "about.photo",
-      "url": "/assets/yph.webp",
+      "url": "/assets/profile-photo.webp",
       "type": "image",
       "alt": ""
     },
     "contact.avatar": {
       "id": "contact.avatar",
-      "url": "/assets/yph.webp",
+      "url": "/assets/profile-photo.webp",
       "type": "image",
       "alt": ""
     },
@@ -313,7 +313,7 @@
     },
     "hero.video": {
       "id": "hero.video",
-      "url": "/assets/hero-loop.mp4",
+      "url": "/assets/hero-video.mp4",
       "type": "video",
       "alt": ""
     }
@@ -419,7 +419,7 @@
           "ar": ""
         },
         "tag": null,
-        "video": "/assets/PROJECT1.mp4",
+        "video": "/assets/project-1.mp4",
         "poster": null
       },
       {
@@ -433,7 +433,7 @@
           "ar": ""
         },
         "tag": null,
-        "video": "/assets/PROJECT2.mp4",
+        "video": "/assets/project-2.mp4",
         "poster": null
       },
       {
@@ -447,7 +447,7 @@
           "ar": ""
         },
         "tag": null,
-        "video": "/assets/PROJECT3.mp4",
+        "video": "/assets/project-3.mp4",
         "poster": null
       },
       {
@@ -461,7 +461,7 @@
           "ar": ""
         },
         "tag": null,
-        "video": "/assets/PROJECT4.mp4",
+        "video": "/assets/project-4.mp4",
         "poster": null
       }
     ],

@@ -14,16 +14,16 @@ test("seed has the v4 content", async () => {
   assert.equal((await s.list("skills")).length, 4);
   assert.equal((await s.getText("hero.title"))?.ar, "الفيديو الحلو مش اللي اتصور كويس هو اللي اتمنتج صح");
   assert.match((await s.getText("hero.title"))?.en ?? "", /edited right/);
-  assert.equal((await s.getMedia("about.photo"))?.url, "/assets/yph.webp");
+  assert.equal((await s.getMedia("about.photo"))?.url, "/assets/profile-photo.webp");
 });
 
 test("every translatable text has en; none missing", () => {
   assert.deepEqual((seed as any).missingEnglish, []);
 });
 
-test("work videos are PROJECT1..4 under /assets", async () => {
+test("work videos use the agreed lowercase asset filenames", async () => {
   const w = await fresh().list("works");
-  assert.deepEqual(w.map((x) => x.video), [1, 2, 3, 4].map((i) => `/assets/PROJECT${i}.mp4`));
+  assert.deepEqual(w.map((x) => x.video), [1, 2, 3, 4].map((i) => `/assets/project-${i}.mp4`));
 });
 
 test("collection CRUD", async () => {

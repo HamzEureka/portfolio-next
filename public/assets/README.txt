@@ -1,3 +1,13 @@
-ضع هنا الملفات الأصلية (غير موجودة في v4):
-logo.svg, yph.webp, PROJECT1.mp4 .. PROJECT4.mp4, hero-poster.jpg, hero-loop.mp4
-المسارات تُقرأ من content/seed.json (media + works[].video).
+ضع ملفاتك المحلية داخل هذا المجلد بالأسماء التالية حرفيًا:
+
+- logo.svg — شعار الموقع
+- profile-photo.webp — صورة قسم About وصورة التواصل
+- hero-poster.jpg — صورة بديلة/غلاف فيديو Hero
+- hero-video.mp4 — فيديو خلفية Hero
+- project-1.mp4 — فيديو العمل الأول
+- project-2.mp4 — فيديو العمل الثاني
+- project-3.mp4 — فيديو العمل الثالث
+- project-4.mp4 — فيديو العمل الرابع
+
+مهم: ملفات هذا المجلد مستثناة من Git عبر .gitignore، لذلك تبقى محلية ولا تُرفع إلى GitHub.
+المسارات معرفة في content/seed.json، كما أن سكربت scripts/build_seed.py والاختبارات يستخدمان الأسماء نفسها.

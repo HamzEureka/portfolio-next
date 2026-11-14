@@ -72,8 +72,8 @@ data = {"texts": T, "media": {}, "collections": {}}
 M = data["media"]
 def media(key, url, typ, alt=""): M[key] = {"id": key, "url": url, "type": typ, "alt": alt}
 media("brand.logo", "/assets/logo.svg", "image", "yossef logo")
-media("about.photo", "/assets/yph.webp", "image"); media("contact.avatar", "/assets/yph.webp", "image")
-media("hero.poster", "/assets/hero-poster.jpg", "image"); media("hero.video", "/assets/hero-loop.mp4", "video")
+media("about.photo", "/assets/profile-photo.webp", "image"); media("contact.avatar", "/assets/profile-photo.webp", "image")
+media("hero.poster", "/assets/hero-poster.jpg", "image"); media("hero.video", "/assets/hero-video.mp4", "video")
 col = data["collections"]
 col["about.paragraphs"] = [{"id": f"p{i+1}", "text": L(x, f"about.paragraphs.{i}")} for i, x in enumerate(C["about"]["paragraphs"])]
 col["about.stats"] = [{"id": f"s{i+1}", "n": s["n"], "label": L(s["label"], f"about.stats.{i}.label")} for i, s in enumerate(C["about"]["stats"])]
@@ -83,7 +83,7 @@ col["skills"] = [
  {"id":"capcut","name":"CapCut","percent":99,"icon":"capcut"},
  {"id":"canva","name":"Canva","percent":99,"icon":"canva"}]
 col["works.categories"] = [{"id":"social","label":L("سوشيال ميديا","works.categories.social.label"),"cta":L("دوس هنا","works.categories.social.cta")}]
-col["works"] = [{"id": f"work{i}", "category": "social", "order": i, "title": {"ar": str(i)}, "desc": {"ar": ""}, "tag": None, "video": f"/assets/PROJECT{i}.mp4", "poster": None} for i in range(1, 5)]
+col["works"] = [{"id": f"work{i}", "category": "social", "order": i, "title": {"ar": str(i)}, "desc": {"ar": ""}, "tag": None, "video": f"/assets/project-{i}.mp4", "poster": None} for i in range(1, 5)]
 col["process"] = [{"id": f"step{i+1}", "title": L(x["title"], f"process.{i}.title"), "text": L(x["text"], f"process.{i}.text")} for i, x in enumerate(C["process"])]
 col["testimonials"] = [{"id": f"t{i+1}", "text": {"ar": x["text"]}, "name": {"ar": x["name"]}, "role": {"ar": x["role"]}} for i, x in enumerate(C["testimonials"])]
 col["contact.links"] = [{"id": k, "value": C["contact"][k]} for k in ["email","whatsapp","instagram","facebook"]]
