@@ -1,0 +1,45 @@
+/* enhancements.css — hero media, scroll progress, light/dark theme.
+   Loaded automatically by js/enhancements.js */
+
+/* ---- hero background: video/poster fading into the page ---- */
+.hero-bg-media{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .9s ease}
+.hero-bg-media.on{opacity:.6}
+.hero-bg-media::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg),transparent 40%)}
+.hero-bg-poster,.hero-bg-video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  /* fades toward the text side (right in Arabic) so the headline stays readable */
+  -webkit-mask-image:linear-gradient(270deg,transparent 0%,#000 65%);
+  mask-image:linear-gradient(270deg,transparent 0%,#000 65%)
+}
+.hero-bg-video{opacity:0;transition:opacity .8s ease}
+.hero-bg-video.ready{opacity:1}
+.hero-bg-media.kb .hero-bg-poster{animation:heroKb 22s ease-in-out infinite alternate}
+@keyframes heroKb{to{transform:scale(1.1) translate(-2%,-1%)}}
+.hero .timecode-strip{z-index:1}
+
+/* ---- scroll progress ---- */
+#scrollProgress{position:fixed;top:0;left:0;right:0;height:3px;z-index:101;background:linear-gradient(90deg,var(--accent-deep),var(--accent));transform-origin:right;transform:scaleX(0);pointer-events:none}
+
+/* ---- theme toggle ---- */
+.theme-btn{background:none;border:1px solid var(--line);color:var(--text);width:38px;height:38px;border-radius:50%;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0;transition:border-color .2s}
+.theme-btn:hover{border-color:var(--accent)}
+.theme-btn svg{width:18px;height:18px}
+.theme-btn .sun{display:none}
+:root[data-theme=light] .theme-btn .sun{display:block}
+:root[data-theme=light] .theme-btn .moon{display:none}
+html.theme-anim,html.theme-anim *{transition:background-color .35s,color .35s,border-color .35s!important}
+
+:root[data-theme=light]{
+  color-scheme:light;
+  --bg:#f7f4fb;--bg-elev:#ffffff;--bg-elev-2:#efeaf6;
+  --text:#1b1424;--text-dim:#51465f;--text-faint:#857a96;
+  --accent:#9a00e0;--accent-soft:#8a1fd0;--accent-deep:#c8aaf0;
+  --line:#d9d0e5;--line-soft:#e7e0ef
+}
+[data-theme=light] header.site-nav{background:rgba(247,244,251,.9)}
+[data-theme=light] .btn-primary{color:#fff}
+[data-theme=light] .cat-countdown{color:#1b1424;text-shadow:0 0 40px rgba(255,110,0,.5)}
+[data-theme=light] .testi-card,[data-theme=light] .stack-card,[data-theme=light] .work-card{box-shadow:0 8px 28px -14px rgba(60,20,100,.3)}
+
+@media (max-width:860px){.theme-btn{align-self:flex-start}}
+@media (prefers-reduced-motion:reduce){.hero-bg-media.kb .hero-bg-poster{animation:none}}

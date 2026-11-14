@@ -1,0 +1,5 @@
+/* Skill icon tile colors — the only place these literals live (moved out of inline styles in v4). */
+.tool-icon.ti-premiere{ --ti-a:#a800f8; --ti-b:#6b4fa0; font:900 1.6rem Arial,sans-serif; color:#fff; }
+.tool-icon.ti-aftereffects{ --ti-a:#7a2ee6; --ti-b:#3d1a6e; font:900 1.6rem Arial,sans-serif; color:#fff; }
+.tool-icon.ti-capcut{ --ti-a:#00f2fe; --ti-b:#4facfe; color:#fff; }
+.tool-icon.ti-canva{ background:transparent; padding:0; }

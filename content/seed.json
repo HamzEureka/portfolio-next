@@ -1,0 +1,805 @@
+{
+  "texts": {
+    "nav.about": {
+      "ar": "نبذة",
+      "en": "About"
+    },
+    "nav.skills": {
+      "ar": "المهارات",
+      "en": "Skills"
+    },
+    "nav.work": {
+      "ar": "الأعمال",
+      "en": "Work"
+    },
+    "nav.process": {
+      "ar": "مسار العمل",
+      "en": "Process"
+    },
+    "nav.contact": {
+      "ar": "تواصل",
+      "en": "Contact"
+    },
+    "nav.cta": {
+      "ar": "احكيلي عن مشروعك",
+      "en": "Tell me about your project"
+    },
+    "brand.name": {
+      "ar": "yossef salama"
+    },
+    "splash.title": {
+      "ar": "PORTFOLIO"
+    },
+    "splash.name": {
+      "ar": "yossef salama"
+    },
+    "splash.role": {
+      "ar": "Video Editor"
+    },
+    "hero.eyebrow": {
+      "ar": "مونتير فيديو ومصمم موشن جرافيك",
+      "en": "Video editor & motion graphics designer"
+    },
+    "hero.title": {
+      "ar": "الفيديو الحلو مش اللي اتصور كويس هو اللي اتمنتج صح",
+      "en": "A great video isn’t the one shot well. It’s the one edited right."
+    },
+    "hero.sub": {
+      "ar": "بستلم اللقطات الخام زي ما هي وبطلعلك منها فيديو بإيقاع وهدف واضح سواء إعلان فيلم قصير أو محتوى لسوشيال ميديا بيشد المشاهد من أول ثانية",
+      "en": "I take your raw footage as it is and turn it into a video with clear rhythm and purpose, whether it’s an ad, a short film, or social media content that hooks viewers from the first second."
+    },
+    "hero.cta1": {
+      "ar": "اتفرج على الأعمال",
+      "en": "Watch the work"
+    },
+    "hero.cta2": {
+      "ar": "احكيلي عن مشروعك",
+      "en": "Tell me about your project"
+    },
+    "hero.counter": {
+      "ar": "+20 مشروع مكتمل منذ 2025",
+      "en": "20+ projects completed since 2025"
+    },
+    "about.bgTextAr": {
+      "ar": "أهلاً أنا يوسف سلامة",
+      "en": "Hi, I’m Yousef Salama"
+    },
+    "about.bgTextEn": {
+      "ar": "Video Editor"
+    },
+    "skills.title": {
+      "ar": "الأدوات والمهارات",
+      "en": "Tools & Skills"
+    },
+    "skills.idx": {
+      "ar": "02 / المهارات",
+      "en": "02 / Skills"
+    },
+    "works.title": {
+      "ar": "مختارات من الأعمال",
+      "en": "Selected Work"
+    },
+    "works.idx": {
+      "ar": "03 / الأعمال",
+      "en": "03 / Work"
+    },
+    "works.heading": {
+      "ar": "PORTFOLIO"
+    },
+    "works.tag.default": {
+      "ar": "مشروع جديد",
+      "en": "New project"
+    },
+    "works.liveTag": {
+      "ar": "LIVE PROJECT"
+    },
+    "process.title": {
+      "ar": "مسار العمل معايا",
+      "en": "How we work together"
+    },
+    "process.idx": {
+      "ar": "04 / آلية العمل",
+      "en": "04 / Workflow"
+    },
+    "testimonials.heading": {
+      "ar": "What Clients Are Saying"
+    },
+    "review.cta.prompt": {
+      "ar": "جرّبت العمل مع يوسف؟",
+      "en": "Worked with Yousef?"
+    },
+    "review.cta.button": {
+      "ar": "أضف رأيك",
+      "en": "Add your review"
+    },
+    "contact.eyebrow": {
+      "ar": "للتواصل",
+      "en": "Get in touch"
+    },
+    "contact.name": {
+      "ar": "يوسف سلامة",
+      "en": "Yousef Salama"
+    },
+    "contact.role": {
+      "ar": "Video Editor"
+    },
+    "contact.share": {
+      "ar": "شارك البورتفوليو",
+      "en": "Share portfolio"
+    },
+    "contact.thanks": {
+      "ar": "THANK YOU FOR YOUR TIME WATCHING"
+    },
+    "contactForm.name": {
+      "ar": "الاسم",
+      "en": "Name"
+    },
+    "contactForm.email": {
+      "ar": "البريد الإلكتروني",
+      "en": "Email"
+    },
+    "contactForm.msg": {
+      "ar": "تفاصيل المشروع",
+      "en": "Project details"
+    },
+    "contactForm.submit": {
+      "ar": "إرسال الطلب",
+      "en": "Send request"
+    },
+    "contactForm.ph.name": {
+      "ar": "اسمك بالكامل",
+      "en": "Your full name"
+    },
+    "contactForm.ph.email": {
+      "ar": "you@example.com"
+    },
+    "contactForm.ph.msg": {
+      "ar": "نوع الفيديو، المدة المتوقعة، وأي تفاصيل مهمة",
+      "en": "Video type, expected length, and any important details"
+    },
+    "footer.copy": {
+      "ar": "© 2026 يوسف سلامة. جميع الحقوق محفوظة.",
+      "en": "© 2026 Yousef Salama. All rights reserved."
+    },
+    "footer.tagline": {
+      "ar": "مصمم ومبني بعناية للمونتاج والسرد البصري",
+      "en": "Designed and built with care for editing and visual storytelling"
+    },
+    "brief.eyebrow": {
+      "ar": "طلب عرض سعر",
+      "en": "Request a quote"
+    },
+    "brief.title": {
+      "ar": "خليني أفهم مشروعك صح من أول مرة",
+      "en": "Let me understand your project right the first time"
+    },
+    "brief.sub": {
+      "ar": "كل ما التفاصيل اللي هتبعتها أوضح، كل ما هقدر أرد عليك بسعر ومدة تسليم أدق وأسرع.",
+      "en": "The clearer the details you send, the more accurate and faster my price and delivery estimate will be."
+    },
+    "brief.submit": {
+      "ar": "إرسال الطلب عبر واتساب",
+      "en": "Send request via WhatsApp"
+    },
+    "brief.submitNote": {
+      "ar": "هيفتحلك واتساب برسالة جاهزة فيها كل التفاصيل اللي كتبتها، تقدر تراجعها قبل ما تبعت.",
+      "en": "WhatsApp will open with a ready message containing everything you wrote. You can review it before sending."
+    },
+    "brief.error.required": {
+      "ar": "من فضلك املأ الاسم، رقم الواتساب، نوع المشروع، ومدة الفيديو على الأقل.",
+      "en": "Please fill in your name, WhatsApp number, project type and video length at least."
+    },
+    "common.close": {
+      "ar": "إغلاق",
+      "en": "Close"
+    },
+    "brief.s1.title": {
+      "ar": "بياناتك",
+      "en": "Your details"
+    },
+    "brief.s1.hint": {
+      "ar": "عشان أقدر أرجعلك بسرعة",
+      "en": "So I can get back to you quickly"
+    },
+    "brief.f.name": {
+      "ar": "الاسم / اسم الشركة",
+      "en": "Name / company name"
+    },
+    "brief.f.whatsapp": {
+      "ar": "رقم واتساب للتواصل",
+      "en": "WhatsApp number"
+    },
+    "brief.s2.title": {
+      "ar": "نوع المشروع",
+      "en": "Project type"
+    },
+    "brief.s2.hint": {
+      "ar": "اختر الأقرب لطبيعة الفيديو المطلوب",
+      "en": "Pick the closest match to the video you need"
+    },
+    "brief.s3.title": {
+      "ar": "تفاصيل الفيديو",
+      "en": "Video details"
+    },
+    "brief.s3.hint": {
+      "ar": "عشان أقدر أحسب الوقت والسعر المناسبين",
+      "en": "So I can estimate the right time and price"
+    },
+    "brief.f.duration": {
+      "ar": "مدة الفيديو النهائي المتوقعة",
+      "en": "Expected final video length"
+    },
+    "brief.ph.duration": {
+      "ar": "اختر المدة",
+      "en": "Choose length"
+    },
+    "brief.f.count": {
+      "ar": "عدد الفيديوهات المطلوبة",
+      "en": "Number of videos"
+    },
+    "brief.ph.count": {
+      "ar": "مثلاً: فيديو واحد، أو سلسلة من 5",
+      "en": "e.g. one video, or a series of 5"
+    },
+    "brief.f.footage": {
+      "ar": "هل المادة الخام (تصوير/صور) جاهزة عندك؟",
+      "en": "Is your raw material (footage / photos) ready?"
+    },
+    "brief.f.platforms": {
+      "ar": "المنصة أو المنصات المستهدفة",
+      "en": "Target platform(s)"
+    },
+    "brief.f.ref": {
+      "ar": "مرجعية بصرية أو فيديوهات بتحبها كستايل (روابط لو موجودة)",
+      "en": "Visual references or videos you like as a style (links if you have them)"
+    },
+    "brief.ph.ref": {
+      "ar": "حط أي روابط فيديو أو أمثلة بتحب الستايل بتاعها",
+      "en": "Paste any video links or examples whose style you like"
+    },
+    "brief.s4.title": {
+      "ar": "الميعاد والميزانية",
+      "en": "Deadline & budget"
+    },
+    "brief.s4.hint": {
+      "ar": "تفاصيل مهمة عشان أقدر أديك سعر واقعي",
+      "en": "Important details so I can give you a realistic price"
+    },
+    "brief.f.deadline": {
+      "ar": "تاريخ التسليم المطلوب",
+      "en": "Required delivery date"
+    },
+    "brief.f.budget": {
+      "ar": "الميزانية التقريبية المتاحة",
+      "en": "Approximate budget"
+    },
+    "brief.ph.budget": {
+      "ar": "اختر نطاق (اختياري)",
+      "en": "Choose a range (optional)"
+    },
+    "brief.f.notes": {
+      "ar": "أي تفاصيل إضافية حابب تقولها",
+      "en": "Anything else you’d like to add"
+    },
+    "brief.ph.notes": {
+      "ar": "أي حاجة تانية تحب تضيفها عن المشروع",
+      "en": "Anything else you’d like to add about the project"
+    }
+  },
+  "media": {
+    "brand.logo": {
+      "id": "brand.logo",
+      "url": "/assets/logo.svg",
+      "type": "image",
+      "alt": "yossef logo"
+    },
+    "about.photo": {
+      "id": "about.photo",
+      "url": "/assets/yph.webp",
+      "type": "image",
+      "alt": ""
+    },
+    "contact.avatar": {
+      "id": "contact.avatar",
+      "url": "/assets/yph.webp",
+      "type": "image",
+      "alt": ""
+    },
+    "hero.poster": {
+      "id": "hero.poster",
+      "url": "/assets/hero-poster.jpg",
+      "type": "image",
+      "alt": ""
+    },
+    "hero.video": {
+      "id": "hero.video",
+      "url": "/assets/hero-loop.mp4",
+      "type": "video",
+      "alt": ""
+    }
+  },
+  "collections": {
+    "about.paragraphs": [
+      {
+        "id": "p1",
+        "text": {
+          "ar": "Video Editor شغوف بالمونتاج وصناعة المحتوى بدأت رحلتي في المجال منذ عام 2025 من خلال التعلم والتطبيق العملي وطورت مهاراتي في After Effects وAdobe Premiere Pro وCapCut",
+          "en": "A passionate video editor. I started in the field in 2025 through learning and hands-on practice, and developed my skills in After Effects, Adobe Premiere Pro and CapCut."
+        }
+      },
+      {
+        "id": "p2",
+        "text": {
+          "ar": "أمتلك خبرة في مونتاج الفيديوهات القصيرة والطويلة ومحتوى السوشيال ميديا مع اهتمام بالإيقاع والهوية البصرية والمؤثرات البصرية والموشن جرافيك وتحسين الألوان والصوت",
+          "en": "I have experience editing short and long videos and social media content, with attention to rhythm, visual identity, visual effects, motion graphics, and color and sound refinement."
+        }
+      },
+      {
+        "id": "p3",
+        "text": {
+          "ar": "أسعى للانضمام إلى بيئة عمل احترافية أطوّر فيها مهاراتي وأقدّم محتوى بصريًا مميزًا يحقق أهداف العمل",
+          "en": "I’m looking to join a professional environment where I can grow my skills and deliver outstanding visual content that serves the goals of the work."
+        }
+      }
+    ],
+    "about.stats": [
+      {
+        "id": "s1",
+        "n": "1",
+        "label": {
+          "ar": "سنوات خبرة",
+          "en": "Years of experience"
+        }
+      },
+      {
+        "id": "s2",
+        "n": "20+",
+        "label": {
+          "ar": "مشروع منجز",
+          "en": "Projects done"
+        }
+      },
+      {
+        "id": "s3",
+        "n": "5+",
+        "label": {
+          "ar": "عميل وعلامة تجارية",
+          "en": "Clients & brands"
+        }
+      }
+    ],
+    "skills": [
+      {
+        "id": "premiere",
+        "name": "Adobe Premiere Pro",
+        "percent": 95,
+        "badge": "Pr"
+      },
+      {
+        "id": "aftereffects",
+        "name": "Adobe After Effects",
+        "percent": 50,
+        "badge": "Ae"
+      },
+      {
+        "id": "capcut",
+        "name": "CapCut",
+        "percent": 99,
+        "icon": "capcut"
+      },
+      {
+        "id": "canva",
+        "name": "Canva",
+        "percent": 99,
+        "icon": "canva"
+      }
+    ],
+    "works.categories": [
+      {
+        "id": "social",
+        "label": {
+          "ar": "سوشيال ميديا",
+          "en": "Social media"
+        },
+        "cta": {
+          "ar": "دوس هنا",
+          "en": "Click here"
+        }
+      }
+    ],
+    "works": [
+      {
+        "id": "work1",
+        "category": "social",
+        "order": 1,
+        "title": {
+          "ar": "1"
+        },
+        "desc": {
+          "ar": ""
+        },
+        "tag": null,
+        "video": "/assets/PROJECT1.mp4",
+        "poster": null
+      },
+      {
+        "id": "work2",
+        "category": "social",
+        "order": 2,
+        "title": {
+          "ar": "2"
+        },
+        "desc": {
+          "ar": ""
+        },
+        "tag": null,
+        "video": "/assets/PROJECT2.mp4",
+        "poster": null
+      },
+      {
+        "id": "work3",
+        "category": "social",
+        "order": 3,
+        "title": {
+          "ar": "3"
+        },
+        "desc": {
+          "ar": ""
+        },
+        "tag": null,
+        "video": "/assets/PROJECT3.mp4",
+        "poster": null
+      },
+      {
+        "id": "work4",
+        "category": "social",
+        "order": 4,
+        "title": {
+          "ar": "4"
+        },
+        "desc": {
+          "ar": ""
+        },
+        "tag": null,
+        "video": "/assets/PROJECT4.mp4",
+        "poster": null
+      }
+    ],
+    "process": [
+      {
+        "id": "step1",
+        "title": {
+          "ar": "فهم الهدف والبريف",
+          "en": "Understanding the goal & brief"
+        },
+        "text": {
+          "ar": "جلسة قصيرة نتفق فيها على الجمهور، المدة المطلوبة، والمرجعيات البصرية قبل أي خطوة تقنية.",
+          "en": "A short session to agree on the audience, the required length, and the visual references before any technical step."
+        }
+      },
+      {
+        "id": "step2",
+        "title": {
+          "ar": "التجميع الأولي (Assembly)",
+          "en": "Rough assembly"
+        },
+        "text": {
+          "ar": "ترتيب أفضل اللقطات في تسلسل خام يوضح شكل القصة، من غير التركيز على التفاصيل الدقيقة بعد.",
+          "en": "Arranging the best shots in a raw sequence that shows the shape of the story, without worrying about fine details yet."
+        }
+      },
+      {
+        "id": "step3",
+        "title": {
+          "ar": "القص النهائي والإيقاع",
+          "en": "Final cut & rhythm"
+        },
+        "text": {
+          "ar": "ضبط التوقيت، الانتقالات، والموسيقى بحيث يبقى الإيقاع خادم للرسالة، مش مجرد تتابع لقطات.",
+          "en": "Tuning the timing, transitions, and music so the rhythm serves the message instead of being just a string of shots."
+        }
+      },
+      {
+        "id": "step4",
+        "title": {
+          "ar": "الألوان والصوت",
+          "en": "Color & sound"
+        },
+        "text": {
+          "ar": "تصحيح لوني يوحّد شكل المشاهد، ومزج صوتي يخلي الحوار والموسيقى واضحين ومتوازنين.",
+          "en": "Color grading that unifies the look of the scenes, and a sound mix that keeps dialogue and music clear and balanced."
+        }
+      },
+      {
+        "id": "step5",
+        "title": {
+          "ar": "المراجعة والتسليم",
+          "en": "Review & delivery"
+        },
+        "text": {
+          "ar": "جولة أو جولتين ملاحظات، وبعدين تسليم الملفات بالصيغ والمقاسات المناسبة لكل منصة.",
+          "en": "One or two rounds of notes, then delivery of the files in the right formats and sizes for each platform."
+        }
+      }
+    ],
+    "testimonials": [
+      {
+        "id": "t1",
+        "text": {
+          "ar": "ما شاء الله مرااا جميل جدا ومبدع وتعاون دايما ان شاء الله بارك الله فيك استاذ"
+        },
+        "name": {
+          "ar": "نورة العتيبي"
+        },
+        "role": {
+          "ar": "مديرة تسويق، معرض هوم تيك لحلول المنزل الذكي"
+        }
+      },
+      {
+        "id": "t2",
+        "text": {
+          "ar": "ما شاء الله تبارك الله خيالي طريقة القص وتناسق الصوت مع الإيقاع طرب اختصرت علي كلام كثير والشغل يفتح النفس اعتماد خلاص"
+        },
+        "name": {
+          "ar": "عبدالله القحطاني"
+        },
+        "role": {
+          "ar": "صاحب العمل، مؤسسة دانيا للتكييف والتبريد"
+        }
+      },
+      {
+        "id": "t3",
+        "text": {
+          "ar": "تسلم الأيادي يا بعدي الفيديو طلع أرتب بمراحل مما توقعت تعديل الألوان بالذات نقل المشاهد لمكان ثاني تماماً كفو والله"
+        },
+        "name": {
+          "ar": "وسام محمد"
+        },
+        "role": {
+          "ar": "يوتيوبر"
+        }
+      },
+      {
+        "id": "t4",
+        "text": {
+          "ar": "ما شاء الله مرااا جميل جدا ومبدع وتعاون دايما ان شاء الله بارك الله فيك استاذ محمد"
+        },
+        "name": {
+          "ar": "نورة العتيبي"
+        },
+        "role": {
+          "ar": "مديرة تسويق، معرض هوم تيك لحلول المنزل الذكي"
+        }
+      }
+    ],
+    "contact.links": [
+      {
+        "id": "email",
+        "value": "hamzaebrahim809@gmail.com"
+      },
+      {
+        "id": "whatsapp",
+        "value": "963988311431"
+      },
+      {
+        "id": "instagram",
+        "value": "https://www.instagram.com/youssef1239901/"
+      },
+      {
+        "id": "facebook",
+        "value": "https://www.facebook.com/"
+      }
+    ],
+    "brief.projectTypes": [
+      {
+        "id": "projectTypes1",
+        "value": "إعلان تجاري",
+        "label": {
+          "ar": "إعلان تجاري",
+          "en": "Commercial ad"
+        }
+      },
+      {
+        "id": "projectTypes2",
+        "value": "فيديو سوشيال ميديا / ريلز",
+        "label": {
+          "ar": "سوشيال ميديا / ريلز",
+          "en": "Social media / Reels"
+        }
+      },
+      {
+        "id": "projectTypes3",
+        "value": "فيديو يوتيوب",
+        "label": {
+          "ar": "فيديو يوتيوب",
+          "en": "YouTube video"
+        }
+      },
+      {
+        "id": "projectTypes4",
+        "value": "مناسبة (زفاف / تخرج / فعالية)",
+        "label": {
+          "ar": "مناسبة (زفاف / فعالية)",
+          "en": "Event (wedding / occasion)"
+        }
+      },
+      {
+        "id": "projectTypes5",
+        "value": "موشن جرافيك",
+        "label": {
+          "ar": "موشن جرافيك",
+          "en": "Motion graphics"
+        }
+      },
+      {
+        "id": "projectTypes6",
+        "value": "فيلم وثائقي / قصير",
+        "label": {
+          "ar": "وثائقي / فيلم قصير",
+          "en": "Documentary / short film"
+        }
+      },
+      {
+        "id": "projectTypes7",
+        "value": "تاني",
+        "label": {
+          "ar": "حاجة تانية",
+          "en": "Something else"
+        }
+      }
+    ],
+    "brief.footage": [
+      {
+        "id": "footage1",
+        "value": "جاهزة بالكامل",
+        "label": {
+          "ar": "جاهزة بالكامل",
+          "en": "Fully ready"
+        }
+      },
+      {
+        "id": "footage2",
+        "value": "جاهزة جزئيًا",
+        "label": {
+          "ar": "جاهزة جزئيًا",
+          "en": "Partly ready"
+        }
+      },
+      {
+        "id": "footage3",
+        "value": "محتاج تصوير كمان",
+        "label": {
+          "ar": "محتاج تصوير كمان",
+          "en": "Need more shooting"
+        }
+      }
+    ],
+    "brief.platforms": [
+      {
+        "id": "platforms1",
+        "value": "انستجرام",
+        "label": {
+          "ar": "انستجرام",
+          "en": "Instagram"
+        }
+      },
+      {
+        "id": "platforms2",
+        "value": "تيك توك",
+        "label": {
+          "ar": "تيك توك",
+          "en": "TikTok"
+        }
+      },
+      {
+        "id": "platforms3",
+        "value": "يوتيوب",
+        "label": {
+          "ar": "يوتيوب",
+          "en": "YouTube"
+        }
+      },
+      {
+        "id": "platforms4",
+        "value": "فيسبوك",
+        "label": {
+          "ar": "فيسبوك",
+          "en": "Facebook"
+        }
+      },
+      {
+        "id": "platforms5",
+        "value": "عرض تجاري / تليفزيون",
+        "label": {
+          "ar": "عرض تجاري / تلفزيون",
+          "en": "Broadcast / TV"
+        }
+      }
+    ],
+    "brief.durations": [
+      {
+        "id": "durations1",
+        "value": "أقل من دقيقة",
+        "label": {
+          "ar": "أقل من دقيقة",
+          "en": "Under 1 minute"
+        }
+      },
+      {
+        "id": "durations2",
+        "value": "1-3 دقايق",
+        "label": {
+          "ar": "1-3 دقايق",
+          "en": "1-3 minutes"
+        }
+      },
+      {
+        "id": "durations3",
+        "value": "3-10 دقايق",
+        "label": {
+          "ar": "3-10 دقايق",
+          "en": "3-10 minutes"
+        }
+      },
+      {
+        "id": "durations4",
+        "value": "أكتر من 10 دقايق",
+        "label": {
+          "ar": "أكتر من 10 دقايق",
+          "en": "Over 10 minutes"
+        }
+      },
+      {
+        "id": "durations5",
+        "value": "مش متأكد",
+        "label": {
+          "ar": "مش متأكد لسه",
+          "en": "Not sure yet"
+        }
+      }
+    ],
+    "brief.budgets": [
+      {
+        "id": "budgets1",
+        "value": "أقل من 1000 جنيه",
+        "label": {
+          "ar": "أقل من 1000 جنيه",
+          "en": "Under 1,000 EGP"
+        }
+      },
+      {
+        "id": "budgets2",
+        "value": "1000-3000 جنيه",
+        "label": {
+          "ar": "1000-3000 جنيه",
+          "en": "1,000-3,000 EGP"
+        }
+      },
+      {
+        "id": "budgets3",
+        "value": "3000-7000 جنيه",
+        "label": {
+          "ar": "3000-7000 جنيه",
+          "en": "3,000-7,000 EGP"
+        }
+      },
+      {
+        "id": "budgets4",
+        "value": "أكتر من 7000 جنيه",
+        "label": {
+          "ar": "أكتر من 7000 جنيه",
+          "en": "Over 7,000 EGP"
+        }
+      },
+      {
+        "id": "budgets5",
+        "value": "محتاج استشارة الأول",
+        "label": {
+          "ar": "محتاج استشارة الأول",
+          "en": "Need a consultation first"
+        }
+      }
+    ]
+  },
+  "missingEnglish": []
+}
