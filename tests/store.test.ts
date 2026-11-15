@@ -12,7 +12,7 @@ test("seed has the v4 content", async () => {
   assert.equal((await s.list("process")).length, 5);
   assert.equal((await s.list("works")).length, 4);
   assert.equal((await s.list("skills")).length, 4);
-  assert.equal((await s.getText("hero.title"))?.ar, "الفيديو الحلو مش اللي اتصور كويس هو اللي اتمنتج صح");
+  assert.equal((await s.getText("hero.title"))?.ar, "الفيديو الحلو مو اللي انصوّر منيح هو اللي انمنتج صح");
   assert.match((await s.getText("hero.title"))?.en ?? "", /edited right/);
   assert.equal((await s.getMedia("about.photo"))?.url, "/assets/profile-photo.webp");
 });

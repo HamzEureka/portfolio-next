@@ -56,7 +56,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
             <a href="#brief" className="nav-cta" data-open-brief>{t("nav.cta")}</a>
             <Link href={`/${other}`} className="lang-btn" aria-label={other === "en" ? "Switch to English" : "التبديل إلى العربية"}>
               <svg viewBox="0 0 24 24" width={16} height={16} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" aria-hidden="true"><circle cx={12} cy={12} r={9} /><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" /></svg>
-              <span>{other === "en" ? "EN" : "ع"}</span>
+              <span>{other === "en" ? "EN" : "ar"}</span>
             </Link>
           </nav>
           <button className="nav-toggle" id="navToggle" aria-label={lang === "en" ? "Open menu" : "فتح القائمة"}>☰</button>

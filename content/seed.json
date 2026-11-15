@@ -41,15 +41,15 @@
       "en": "Video editor & motion graphics designer"
     },
     "hero.title": {
-      "ar": "الفيديو الحلو مش اللي اتصور كويس هو اللي اتمنتج صح",
+      "ar": "الفيديو الحلو مو اللي انصوّر منيح هو اللي انمنتج صح",
       "en": "A great video isn’t the one shot well. It’s the one edited right."
     },
     "hero.sub": {
-      "ar": "بستلم اللقطات الخام زي ما هي وبطلعلك منها فيديو بإيقاع وهدف واضح سواء إعلان فيلم قصير أو محتوى لسوشيال ميديا بيشد المشاهد من أول ثانية",
+      "ar": "بستلم اللقطات الخام متل ما هي وبطلعلك منها فيديو بإيقاع وهدف واضح سواء إعلان فيلم قصير أو محتوى لسوشيال ميديا بيشد المشاهد من أول ثانية",
       "en": "I take your raw footage as it is and turn it into a video with clear rhythm and purpose, whether it’s an ad, a short film, or social media content that hooks viewers from the first second."
     },
     "hero.cta1": {
-      "ar": "اتفرج على الأعمال",
+      "ar": "تفرّج على الأعمال",
       "en": "Watch the work"
     },
     "hero.cta2": {
@@ -94,7 +94,7 @@
       "ar": "LIVE PROJECT"
     },
     "process.title": {
-      "ar": "مسار العمل معايا",
+      "ar": "مسار العمل معي",
       "en": "How we work together"
     },
     "process.idx": {
@@ -174,7 +174,7 @@
       "en": "Let me understand your project right the first time"
     },
     "brief.sub": {
-      "ar": "كل ما التفاصيل اللي هتبعتها أوضح، كل ما هقدر أرد عليك بسعر ومدة تسليم أدق وأسرع.",
+      "ar": "كل ما كانت التفاصيل اللي رح تبعتها أوضح، كل ما قدرت أرد عليك بسعر ومدة تسليم أدق وأسرع.",
       "en": "The clearer the details you send, the more accurate and faster my price and delivery estimate will be."
     },
     "brief.submit": {
@@ -182,7 +182,7 @@
       "en": "Send request via WhatsApp"
     },
     "brief.submitNote": {
-      "ar": "هيفتحلك واتساب برسالة جاهزة فيها كل التفاصيل اللي كتبتها، تقدر تراجعها قبل ما تبعت.",
+      "ar": "رح يفتحلك واتساب برسالة جاهزة فيها كل التفاصيل اللي كتبتها، فيك تراجعها قبل ما تبعت.",
       "en": "WhatsApp will open with a ready message containing everything you wrote. You can review it before sending."
     },
     "brief.error.required": {
@@ -198,7 +198,7 @@
       "en": "Your details"
     },
     "brief.s1.hint": {
-      "ar": "عشان أقدر أرجعلك بسرعة",
+      "ar": "منشان أقدر أرجعلك بسرعة",
       "en": "So I can get back to you quickly"
     },
     "brief.f.name": {
@@ -222,7 +222,7 @@
       "en": "Video details"
     },
     "brief.s3.hint": {
-      "ar": "عشان أقدر أحسب الوقت والسعر المناسبين",
+      "ar": "منشان أقدر أحسب الوقت والسعر المناسبين",
       "en": "So I can estimate the right time and price"
     },
     "brief.f.duration": {
@@ -254,7 +254,7 @@
       "en": "Visual references or videos you like as a style (links if you have them)"
     },
     "brief.ph.ref": {
-      "ar": "حط أي روابط فيديو أو أمثلة بتحب الستايل بتاعها",
+      "ar": "حط أي روابط فيديو أو أمثلة بتحب الستايل تبعها",
       "en": "Paste any video links or examples whose style you like"
     },
     "brief.s4.title": {
@@ -262,7 +262,7 @@
       "en": "Deadline & budget"
     },
     "brief.s4.hint": {
-      "ar": "تفاصيل مهمة عشان أقدر أديك سعر واقعي",
+      "ar": "تفاصيل مهمة منشان أقدر أعطيك سعر واقعي",
       "en": "Important details so I can give you a realistic price"
     },
     "brief.f.deadline": {
@@ -282,7 +282,7 @@
       "en": "Anything else you’d like to add"
     },
     "brief.ph.notes": {
-      "ar": "أي حاجة تانية تحب تضيفها عن المشروع",
+      "ar": "أي شي تاني بتحب تضيفه عن المشروع",
       "en": "Anything else you’d like to add about the project"
     }
   },
@@ -495,7 +495,7 @@
           "en": "Final cut & rhythm"
         },
         "text": {
-          "ar": "ضبط التوقيت، الانتقالات، والموسيقى بحيث يبقى الإيقاع خادم للرسالة، مش مجرد تتابع لقطات.",
+          "ar": "ضبط التوقيت، الانتقالات، والموسيقى بحيث يضل الإيقاع خادم للرسالة، مو مجرد تتابع لقطات.",
           "en": "Tuning the timing, transitions, and music so the rhythm serves the message instead of being just a string of shots."
         }
       },
@@ -641,9 +641,9 @@
       },
       {
         "id": "projectTypes7",
-        "value": "تاني",
+        "value": "شي تاني",
         "label": {
-          "ar": "حاجة تانية",
+          "ar": "شي تاني",
           "en": "Something else"
         }
       }
@@ -677,9 +677,9 @@
     "brief.platforms": [
       {
         "id": "platforms1",
-        "value": "انستجرام",
+        "value": "انستغرام",
         "label": {
-          "ar": "انستجرام",
+          "ar": "انستغرام",
           "en": "Instagram"
         }
       },
@@ -709,7 +709,7 @@
       },
       {
         "id": "platforms5",
-        "value": "عرض تجاري / تليفزيون",
+        "value": "عرض تجاري / تلفزيون",
         "label": {
           "ar": "عرض تجاري / تلفزيون",
           "en": "Broadcast / TV"
@@ -751,9 +751,9 @@
       },
       {
         "id": "durations5",
-        "value": "مش متأكد",
+        "value": "مو متأكد",
         "label": {
-          "ar": "مش متأكد لسه",
+          "ar": "مو متأكد لسا",
           "en": "Not sure yet"
         }
       }
@@ -761,34 +761,34 @@
     "brief.budgets": [
       {
         "id": "budgets1",
-        "value": "أقل من 1000 جنيه",
+        "value": "10-30 دولار",
         "label": {
-          "ar": "أقل من 1000 جنيه",
-          "en": "Under 1,000 EGP"
+          "ar": "10-30 دولار",
+          "en": "$10-$30"
         }
       },
       {
         "id": "budgets2",
-        "value": "1000-3000 جنيه",
+        "value": "30-70 دولار",
         "label": {
-          "ar": "1000-3000 جنيه",
-          "en": "1,000-3,000 EGP"
+          "ar": "30-70 دولار",
+          "en": "$30-$70"
         }
       },
       {
         "id": "budgets3",
-        "value": "3000-7000 جنيه",
+        "value": "70-150 دولار",
         "label": {
-          "ar": "3000-7000 جنيه",
-          "en": "3,000-7,000 EGP"
+          "ar": "70-150 دولار",
+          "en": "$70-$150"
         }
       },
       {
         "id": "budgets4",
-        "value": "أكتر من 7000 جنيه",
+        "value": "أكثر من 150 دولار",
         "label": {
-          "ar": "أكتر من 7000 جنيه",
-          "en": "Over 7,000 EGP"
+          "ar": "أكثر من 150 دولار",
+          "en": "Over $150"
         }
       },
       {
