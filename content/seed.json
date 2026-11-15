@@ -93,6 +93,14 @@
     "works.liveTag": {
       "ar": "LIVE PROJECT"
     },
+    "works.open": {
+      "ar": "افتح الفئة",
+      "en": "Open category"
+    },
+    "works.close": {
+      "ar": "سكّر الفئة",
+      "en": "Close category"
+    },
     "process.title": {
       "ar": "مسار العمل معي",
       "en": "How we work together"
