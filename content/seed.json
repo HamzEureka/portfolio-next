@@ -104,6 +104,10 @@
     "testimonials.heading": {
       "ar": "What Clients Are Saying"
     },
+    "testimonials.dotLabel": {
+      "ar": "الاقتباس رقم {n}",
+      "en": "Quote {n}"
+    },
     "review.cta.prompt": {
       "ar": "جرّبت العمل مع يوسف؟",
       "en": "Worked with Yousef?"
