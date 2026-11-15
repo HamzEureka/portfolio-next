@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { LANGS, getStore, tr, type Lang, type ContactLink } from "@/lib/content";
 import Effects from "@/components/Effects";
 import Works from "@/components/Works";
+import Testimonials from "@/components/Testimonials";
 import BriefDialog from "@/components/BriefDialog";
 import { SkillIcons, ContactIcons } from "@/components/icons";
 
@@ -150,25 +151,14 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
           </div>
         </section>
 
-        <section className="testimonials-scroll" id="testimonialsScroll">
-          <div className="testimonials-sticky">
-            <div className="section-head reveal center-head"><h2>{t("testimonials.heading")} <span className="heart-emoji">🥰</span></h2></div>
-            <div className="spotlight-stage">
-              <div className="spotlight-track" id="spotlightTrack">
-                {testi.map((x) => (
-                  <article className="testi-card" key={x.id}>
-                    <p>{tr(x.text, lang)}</p>
-                    <div className="testi-mini-who">
-                      <span className="testi-avatar">{initials(tr(x.name, lang))}</span>
-                      <div><b>{tr(x.name, lang)}</b><span>{tr(x.role, lang)}</span></div>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-            <div className="spotlight-dots" id="spotlightDots" />
-          </div>
-        </section>
+        <Testimonials
+          heading={t("testimonials.heading")}
+          dotLabelTemplate={t("testimonials.dotLabel")}
+          items={testi.map((x) => ({
+            id: x.id, text: tr(x.text, lang), name: tr(x.name, lang), role: tr(x.role, lang),
+            initials: initials(tr(x.name, lang)),
+          }))}
+        />
 
         <div className="add-review">
           <p>{t("review.cta.prompt")}</p>
