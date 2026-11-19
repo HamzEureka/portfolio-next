@@ -37,6 +37,10 @@ desktop.ini
 .idea/
 .vscode/
 
+# patch leftovers
+*.rej
+*.orig
+
 # caches
 .vercel
 .turbo
