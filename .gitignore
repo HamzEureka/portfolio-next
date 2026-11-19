@@ -50,3 +50,5 @@ coverage/
 # Local media assets (keep files on this machine; do not push to GitHub)
 /public/assets/*
 !/public/assets/README.txt
+
+.overlay-v12/
