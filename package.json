@@ -8,7 +8,10 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
-    "verify:css": "node scripts/verify_css.mjs"
+    "verify:css": "node scripts/verify_css.mjs",
+    "check": "npm test && npm run typecheck && npm run verify:css && npm run build",
+    "server": "node --env-file-if-exists=server/.env server/index.mjs",
+    "smoke": "node scripts/e2e-smoke.mjs"
   },
   "dependencies": {
     "next": "16.4.4",

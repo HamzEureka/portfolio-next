@@ -56,3 +56,27 @@ test("list returns copies (no leaking mutation)", async () => {
   (await s.list("process")).pop();
   assert.equal((await s.list("process")).length, 5);
 });
+
+// v7 T2: Works open/close controls (D24) and category model facts (D15, D17, D20)
+test("works.open and works.close exist with ar and en", async () => {
+  const s = fresh();
+  for (const k of ["works.open", "works.close"]) {
+    const t = await s.getText(k);
+    assert.ok(t?.ar && t?.en, `${k} needs ar and en`);
+  }
+});
+
+test("all works belong to category social", async () => {
+  const w = await fresh().list("works");
+  assert.ok(w.length > 0);
+  assert.ok(w.every((x) => x.category === "social"));
+});
+
+test("moving a work via update changes grouping", async () => {
+  const s = fresh();
+  const [first] = await s.list("works");
+  await s.update("works", first.id, { category: "other" });
+  const after = await s.list("works");
+  assert.equal(after.filter((x) => x.category === "social").length, 3);
+  assert.equal(after.filter((x) => x.category === "other").length, 1);
+});

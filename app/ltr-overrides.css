@@ -1,0 +1,16 @@
+/* v8 PROPOSAL — LTR (/en) fixes for things that v4 left RTL-only. OPTIONAL: deviates from v4 (v4's English mode had these defects too).
+   Scoped to html[dir="ltr"], so /ar is untouched. Source of each rule: scripts/audit_rtl.ts findings. globals.css is not edited (verify:css stays green). */
+
+/* PROCESS timeline: the vertical rule sits at `right:27px` (centre of the 56px number column, which is on the right in RTL). In LTR the column is on the left. */
+html[dir="ltr"] .timeline{ padding-right:0; padding-left:2px }
+html[dir="ltr"] .timeline::before{ right:auto; left:27px }
+
+/* v9 (scroll progress): fills from the reading-start edge. v4 hard-coded `transform-origin:right`. */
+html[dir="ltr"] #scrollProgress{ transform-origin:left }
+
+/* v9 (hero background): the media fades toward the text side; text is on the left in LTR, v4 fades toward the right. */
+html[dir="ltr"] .hero-bg-poster,
+html[dir="ltr"] .hero-bg-video{
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 65%);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 65%);
+}

@@ -101,5 +101,5 @@ export function desktopCardStyle(i: number, activeFloat: number, gap: number): C
 /** window.scrollTo `top` for a dot click on desktop, or null when there is nothing to scroll. */
 export function desktopScrollTarget(i: number, n: number, sectionTop: number, scrollable: number): number | null {
   if (scrollable <= 0) return null;
-  return sectionTop + (0.08 + (i / (n - 1)) * 0.84) * scrollable;
+  return sectionTop + (0.08 + (n > 1 ? i / (n - 1) : 0) * 0.84) * scrollable;
 }

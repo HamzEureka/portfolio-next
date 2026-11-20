@@ -21,6 +21,8 @@ export interface Step { id: string; title: LText; text: LText }
 export interface Testimonial { id: string; text: LText; name: LText; role: LText }
 export interface ContactLink { id: "email" | "whatsapp" | "instagram" | "facebook"; value: string }
 export interface BriefOption { id: string; value: string; label: LText }
+/** Pricing package. `features` is one feature per line. */
+export interface Package { id: string; name: LText; price: LText; features: LText }
 
 /** Collection name -> item type. Collections are ordered arrays of items with a unique `id`. */
 export interface Collections {
@@ -37,6 +39,7 @@ export interface Collections {
   "brief.platforms": BriefOption;
   "brief.durations": BriefOption;
   "brief.budgets": BriefOption;
+  "packages": Package;
 }
 export type CollectionName = keyof Collections;
 
