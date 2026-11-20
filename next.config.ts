@@ -2,7 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   async rewrites() {
-    return process.env.PROXY_API === "1" ? [{ source: "/api/:path*", destination: `${process.env.API_INTERNAL_URL || "http://127.0.0.1:8000"}/:path*` }] : [];
+    // Next bakes rewrites into .next at BUILD time, so NODE_ENV (production builds) must enable them too;
+    // otherwise `npm run build` on Render without PROXY_API produces a site whose /api/* returns 404.
+    const enabled = process.env.PROXY_API === "1" || process.env.NODE_ENV === "production";
+    return enabled ? [{ source: "/api/:path*", destination: `${process.env.API_INTERNAL_URL || "http://127.0.0.1:8000"}/:path*` }] : [];
   },
 
   async headers() {

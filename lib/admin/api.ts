@@ -39,7 +39,7 @@ export class HttpAdminApi implements AdminApi {
   async setOrder(c: string, ids: string[]) { await this.call("PUT", `/collections/${enc(c)}/order`, { ids }); }
   async checkAuth() { await this.call("GET", "/auth/check"); }
   async publish() { await this.call("POST", "/publish"); }
-  async publishStatus() { return (await this.call("GET", "/publish/status")) as { state: "idle" | "running" | "done" | "error"; message: string }; }
+  async publishStatus() { return (await this.call("GET", "/publish/status")) as unknown as { state: "idle" | "running" | "done" | "error"; message: string }; }
   /** Cloud storage when the server has it (browser uploads straight to Cloudinary with a server-signed ticket), else the server's own disk. */
   async uploadWithProgress(file: Blob, filename: string, onProgress: (fraction: number) => void): Promise<{ url: string }> {
     let ticket: { url: string; fields: Record<string, string | number> } | null = null;
