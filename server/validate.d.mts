@@ -1,0 +1,11 @@
+export const COLLECTION_NAMES: string[];
+export const KEY_RE: RegExp;
+export function safeUrl(u: unknown): boolean;
+export function safeMediaUrl(u: unknown): boolean;
+export function validKey(k: unknown): boolean;
+export function validId(id: unknown): boolean;
+export function validateLText(v: unknown): string | null;
+export function validateItem(name: string, item: unknown, id: string): string | null;
+export function validateMedia(slot: unknown, id: string): string | null;
+export function validateReview(b: unknown): { error: string } | { value: { name: string; role: string; text: string }; error?: undefined };
+export function validateContact(b: unknown): { error: string } | { value: { name: string; email: string; msg: string }; error?: undefined };

@@ -1,0 +1,6 @@
+طريقة التركيب (نسخة v12 كاملة):
+1) فك هذا الـ zip فوق مجلد v7 ووافق على استبدال الملفات.
+2) (اختياري) شغّل:  powershell -ExecutionPolicy Bypass -File .\CLEANUP-OLD-FILES.ps1   لحذف الملفات القديمة.
+3) npm ci
+4) npm run dev      (وفي نافذة ثانية: npm run server)
+ملاحظة: لا تفك overlay-v12.zip لوحده، هو ملفات معدّلة فقط وليس مشروعاً كاملاً.

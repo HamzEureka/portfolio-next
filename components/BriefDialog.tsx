@@ -1,10 +1,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { composeBrief } from "@/lib/brief-i18n";
+import type { Lang } from "@/lib/content";
 
 export interface Opt { id: string; value: string; label: string }
 export interface BriefProps {
   t: Record<string, string>;            // resolved texts, keys as in seed (brief.*, common.close)
   whatsapp: string;
+  lang: Lang;
   projectTypes: Opt[]; footage: Opt[]; platforms: Opt[]; durations: Opt[]; budgets: Opt[];
 }
 
@@ -27,21 +30,15 @@ export default function BriefDialog(p: BriefProps) {
 
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault(); setErr(false);
-    const f = e.currentTarget, v = (n: string) => (f.elements.namedItem(n) as HTMLInputElement | null)?.value.trim() ?? "";
+    const f = e.currentTarget, v = (n: string) => (f.elements.namedItem(n) as HTMLInputElement | null)?.value ?? "";
     const checked = (n: string) => f.querySelector<HTMLInputElement>(`input[name="${n}"]:checked`)?.value;
-    const ptype = checked("ptype"), footage = checked("footage"), duration = v("duration");
     const platforms = Array.from(f.querySelectorAll<HTMLInputElement>('input[name="platform"]:checked')).map((i) => i.value);
-    const name = v("name"), wa = v("whatsapp");
-    if (!name || !wa || !ptype || !duration) { setErr(true); return; }
-    const lines = ["طلب عرض سعر جديد", "", "الاسم: " + name, "واتساب: " + wa, "نوع المشروع: " + ptype, "مدة الفيديو: " + duration];
-    if (v("count")) lines.push("عدد الفيديوهات: " + v("count"));
-    if (footage) lines.push("المادة الخام: " + footage);
-    if (platforms.length) lines.push("المنصات: " + platforms.join("، "));
-    if (v("ref")) lines.push("مرجعية بصرية: " + v("ref"));
-    if (v("deadline")) lines.push("تاريخ التسليم المطلوب: " + v("deadline"));
-    if (v("budget")) lines.push("الميزانية التقريبية: " + v("budget"));
-    if (v("notes")) lines.push("تفاصيل إضافية: " + v("notes"));
-    window.open("https://wa.me/" + p.whatsapp.replace(/\D/g, "") + "?text=" + encodeURIComponent(lines.join("\n")), "_blank", "noopener");
+    const r = composeBrief({
+      name: v("name"), whatsapp: v("whatsapp"), ptype: checked("ptype"), duration: v("duration"), count: v("count"), footage: checked("footage"),
+      platforms, ref: v("ref"), deadline: v("deadline"), budget: v("budget"), notes: v("notes"),
+    }, p.whatsapp, p.lang);
+    if (!r.ok) { setErr(true); return; }
+    window.open(r.url, "_blank", "noopener");
   }
 
   const t = p.t;

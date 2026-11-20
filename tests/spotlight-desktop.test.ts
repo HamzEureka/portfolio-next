@@ -75,14 +75,7 @@ test("e) rAF throttling with flush:false", () => {
   compareRuns({ opts: { n: 4, mobile: false }, steps, mount, flush: false });
 });
 
-// f) n=1: keep the original NaN quirk in goTo (i / (N-1) = 0/0).
-test("f) n=1 keeps the NaN quirk", () => {
-  const steps: Step[] = [
-    { op: "scrollY", y: 100 },
-    { op: "dot", i: 0 },
-  ];
-  compareRuns({ opts: { n: 1, mobile: false }, steps, mount });
-});
+// f) n=1: v4 produced NaN in goTo (0/0). DELIBERATE DEVIATION (v11 spotlight-n1.patch): finite target; see tests/v11-spotlight-n1.test.ts.
 
 // g) teardown (NOT a parity check): after stop(), cards are cleared and listeners removed.
 test("g) teardown resets card styles and removes listeners", () => {

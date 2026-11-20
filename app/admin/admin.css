@@ -1,0 +1,33 @@
+/* STATUS: UNVERIFIED. Only var() colors from globals.css: no new colors (rule 2). */
+.adm{max-width:960px;margin:0 auto;padding:16px;color:var(--text);background:var(--bg);font-family:system-ui,sans-serif}
+.adm-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:12px}
+.adm-head h1{margin:0;font-size:1.2rem}
+.adm button,.adm input,.adm select,.adm textarea{font:inherit;color:var(--text);background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:6px 8px}
+.adm button{cursor:pointer}.adm button:hover:not(:disabled){border-color:var(--accent)}.adm button:disabled{opacity:.45;cursor:not-allowed}
+.adm [aria-selected="true"]{border-color:var(--accent);color:var(--accent-soft)}
+.adm-row,.adm-item{display:grid;gap:8px;margin:12px 0;padding:10px;border:1px solid var(--line-soft);border-radius:var(--radius)}
+.adm-ltext{display:grid;grid-template-columns:1fr 1fr;gap:8px}.adm-ltext textarea{min-height:56px;width:100%;box-sizing:border-box}
+.adm-field{display:grid;gap:4px;color:var(--text-dim)}.adm-actions{display:flex;gap:8px;margin-top:8px}
+.adm-warn{color:var(--text-dim);border:1px dashed var(--accent-deep);padding:8px}.adm-ok{color:var(--accent-soft)}.adm-err{color:var(--accent-soft);font-weight:700}
+.adm code{color:var(--text-faint)}
+@media (max-width:640px){.adm-ltext{grid-template-columns:1fr}}
+
+/* friendly admin additions (var() colors only) */
+.adm{font-size:1.05rem;line-height:1.7}
+.adm-pass{display:flex;gap:8px;align-items:end;flex-wrap:wrap}.adm-pass label{display:grid;gap:2px;font-size:.85rem;color:var(--text-dim)}
+.adm-lead{color:var(--text-dim)}.adm h3{margin:0;font-size:1.05rem}
+.adm-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border:1px solid var(--accent);border-radius:var(--radius);background:var(--bg-elev-2);color:var(--text);cursor:pointer;font-weight:700;justify-self:start}
+.adm-btn:hover{background:var(--accent);color:var(--bg)}.adm-btn.is-off{opacity:.5;pointer-events:none}
+.adm-upload{display:grid;gap:8px;justify-items:start}
+.adm-prev{width:100%;max-width:360px;aspect-ratio:16/9;object-fit:cover;background:var(--bg-elev-2);border:1px solid var(--line);border-radius:var(--radius)}
+.adm-empty{width:100%;max-width:360px;aspect-ratio:16/9;display:grid;place-items:center;border:1px dashed var(--line);color:var(--text-faint);border-radius:var(--radius)}
+.adm-progress{position:relative;width:100%;max-width:360px;height:22px;background:var(--bg-elev-2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.adm-progress i{position:absolute;inset:0 auto 0 0;background:var(--accent-deep)}.adm-progress span{position:relative;display:block;text-align:center;font-size:.8rem}
+.adm-hint{color:var(--text-faint)}.adm-inline{display:flex;gap:8px}.adm-inline input{flex:1}
+.adm-banner{padding:10px;border:1px solid var(--line);border-radius:var(--radius)}
+.adm-primary{background:var(--accent)!important;color:var(--on-accent,var(--bg))!important;font-weight:700;padding:12px 22px!important}
+.adm-sticky{position:sticky;bottom:0;background:var(--bg);padding:10px 0;border-top:1px solid var(--line);align-items:center;flex-wrap:wrap}
+.adm summary{cursor:pointer;padding:10px 0;font-weight:700}
+.adm-item legend{font-weight:700;padding:0 6px}
+.adm-field>span{color:var(--text)}
+.adm section{padding:16px 0;border-bottom:0}

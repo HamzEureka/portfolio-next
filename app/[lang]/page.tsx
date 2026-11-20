@@ -1,11 +1,23 @@
-import Link from "next/link";
+import { Fragment, type CSSProperties } from "react";
 import { notFound } from "next/navigation";
 import { LANGS, getStore, tr, type Lang, type ContactLink } from "@/lib/content";
 import Effects from "@/components/Effects";
+import LangSwitch from "@/components/LangSwitch";
+import ThemeToggle from "@/components/ThemeToggle";
+import ScrollProgress from "@/components/ScrollProgress";
+import HeroBackground from "@/components/HeroBackground";
 import Works from "@/components/Works";
+import WorksPlayback from "@/components/WorksPlayback";
+import WorksFillHeading from "@/components/WorksFillHeading";
+import HeroFx from "@/components/HeroFx";
+import ScrollTimeline from "@/components/ScrollTimeline";
 import Testimonials from "@/components/Testimonials";
 import BriefDialog from "@/components/BriefDialog";
+import ReviewDialog from "@/components/ReviewDialog";
+import Interactions from "@/components/Interactions";
+import ContactFormHandler from "@/components/ContactFormHandler";
 import { SkillIcons, ContactIcons } from "@/components/icons";
+import { groupWorks } from "@/lib/works";
 
 const initials = (n: string) => n.trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join(".");
 const linkHref = (l: ContactLink) =>
@@ -17,14 +29,16 @@ function Icon({ k }: { k: string }) {
   return <svg viewBox={i.viewBox} width={18} height={18}><path fill="currentColor" d={i.d} /></svg>;
 }
 
+// M11: content lives in data/content.json and is edited by the API server (server/), so render per request instead of at build time.
+export const dynamic = "force-dynamic";
 export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
   const { lang: raw } = await params;
   if (!LANGS.includes(raw as Lang)) notFound();
-  const lang = raw as Lang, other: Lang = lang === "ar" ? "en" : "ar";
+  const lang = raw as Lang;
   const s = await getStore();
-  const [texts, media, paragraphs, stats, skills, cats, works, steps, testi, links] = await Promise.all([
+  const [texts, media, paragraphs, stats, skills, cats, works, steps, packages, testi, links] = await Promise.all([
     s.listTexts(), s.listMedia(), s.list("about.paragraphs"), s.list("about.stats"), s.list("skills"),
-    s.list("works.categories"), s.list("works"), s.list("process"), s.list("testimonials"), s.list("contact.links"),
+    s.list("works.categories"), s.list("works"), s.list("process"), s.list("packages"), s.list("testimonials"), s.list("contact.links"),
   ]);
   const [pt, ft, pl, du, bu] = await Promise.all([
     s.list("brief.projectTypes"), s.list("brief.footage"), s.list("brief.platforms"), s.list("brief.durations"), s.list("brief.budgets"),
@@ -45,7 +59,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       <header className="site-nav">
         <div className="nav-inner">
           <div className="brand nav-brand-anim">
-            <img src={logo.url} alt="" />
+            <span className="brand-logo-mask" role="img" aria-label={logo.alt} style={{ "--logo": `url("${logo.url}")` } as CSSProperties} />
             <span className="brand-name">yossef  <span className="accent-word">salama</span></span>
           </div>
           <nav className="links" id="navLinks">
@@ -53,14 +67,13 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
             <a href="#skills">{t("nav.skills")}</a>
             <a href="#work">{t("nav.work")}</a>
             <a href="#process">{t("nav.process")}</a>
+            <a href="#packages">{t("nav.packages")}</a>
             <a href="#contact">{t("nav.contact")}</a>
             <a href="#brief" className="nav-cta" data-open-brief>{t("nav.cta")}</a>
-            <Link href={`/${other}`} className="lang-btn" aria-label={other === "en" ? "Switch to English" : "التبديل إلى العربية"}>
-              <svg viewBox="0 0 24 24" width={16} height={16} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" aria-hidden="true"><circle cx={12} cy={12} r={9} /><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" /></svg>
-              <span>{other === "en" ? "EN" : "ar"}</span>
-            </Link>
+            <LangSwitch lang={lang} labels={{ ar: t("lang.switchTo.ar"), en: t("lang.switchTo.en") }} />
+            <ThemeToggle label={t("theme.toggle")} />
           </nav>
-          <button className="nav-toggle" id="navToggle" aria-label={lang === "en" ? "Open menu" : "فتح القائمة"}>☰</button>
+          <button className="nav-toggle" id="navToggle" aria-label={t("nav.menu")}>☰</button>
         </div>
       </header>
 
@@ -77,7 +90,9 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
           </div>
         </section>
 
-        <section className="hero wrap" style={{ borderBottom: "none" }}>
+        <section className="hero" id="hero" style={{ borderBottom: "none" }}>
+          <div className="hero-bg" aria-hidden="true" />
+          <HeroBackground poster={media["hero.poster"]?.url ?? ""} video={media["hero.video"]?.url ?? ""} />
           <div className="hero-inner">
             <div className="eyebrow-role hero-anim" style={{ animationDelay: "0.1s" }}>{t("hero.eyebrow")}</div>
             <h1 className="hero-anim" style={{ animationDelay: "0.2s" }}>{t("hero.title")}</h1>
@@ -87,6 +102,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
               <a href="#brief" className="btn btn-ghost" data-open-brief>{t("hero.cta2")}</a>
             </div>
           </div>
+          <HeroFx />
           <div className="timecode-strip hero-anim" style={{ animationDelay: "0.5s" }}>
             <div className="waveform" aria-hidden="true" />
             <div className="tc mono">{t("hero.counter")}</div>
@@ -130,13 +146,16 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
             </div>
             <div className="section-head reveal"><h2>{t("works.title")}</h2><div className="idx mono">{t("works.idx")}</div></div>
           </div>
-          {cats.map((c) => (
+          {groupWorks(cats, works).map(({ category: c, items }) => (
             <Works key={c.id} category={c} label={tr(c.label, lang)} cta={tr(c.cta, lang)} liveTag={t("works.liveTag")}
-              works={works.filter((w) => w.category === c.id).sort((a, b) => a.order - b.order).map((w) => ({
+              openLabel={t("works.open")} closeLabel={t("works.close")}
+              works={items.map((w) => ({
                 id: w.id, category: w.category, video: w.video, poster: w.poster,
                 title: tr(w.title, lang), desc: tr(w.desc, lang), tag: tr(w.tag ?? texts["works.tag.default"], lang),
               }))} />
           ))}
+          <WorksPlayback />
+          <WorksFillHeading />
         </section>
 
         <section className="wrap" id="process">
@@ -147,6 +166,22 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
                 <div className="tl-num"><em>{i + 1}</em></div>
                 <div className="tl-body"><h3>{tr(x.title, lang)}</h3><p>{tr(x.text, lang)}</p></div>
               </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="wrap" id="packages">
+          <div className="section-head reveal"><h2>{t("packages.title")}</h2><div className="idx mono">{t("packages.idx")}</div></div>
+          <div className="packages-grid reveal">
+            {packages.map((x) => (
+              <article key={x.id} className="package-card reveal">
+                <h3>{tr(x.name, lang)}</h3>
+                <div className="package-price">{tr(x.price, lang)}</div>
+                <ul className="package-features">
+                  {tr(x.features, lang).split("\n").map((f, i) => <li key={i}>{f}</li>)}
+                </ul>
+                <a href="#brief" className="btn btn-primary" data-open-brief>{t("packages.cta")}</a>
+              </article>
             ))}
           </div>
         </section>
@@ -184,7 +219,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
                 <span className="c-icon" aria-hidden="true"><Icon k="share" /></span><span>{t("contact.share")}</span>
               </button>
             </div>
-            <div className="thank-you-block reveal"><div className="ty-title small">THANK YOU<br />FOR YOUR TIME<br />WATCHING</div></div>
+            <div className="thank-you-block reveal"><div className="ty-title small">{t("contact.thanks").split("\n").map((line, i) => <Fragment key={i}>{i > 0 && <br />}{line}</Fragment>)}</div></div>
           </div>
           <div className="contact-form-wrap">
             <form className="reveal">
@@ -198,11 +233,16 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       </main>
 
       <footer className="wrap">
-        <div className="fine" style={{ display: "flex", alignItems: "center", gap: 10 }}><img src={logo.url} alt="logo" />{t("footer.copy")}</div>
+        <div className="fine" style={{ display: "flex", alignItems: "center", gap: 10 }}><span className="brand-logo-mask sm" role="img" aria-label={t("brand.logoAlt")} style={{ "--logo": `url("${logo.url}")` } as CSSProperties} />{t("footer.copy")}</div>
         <div className="fine mono">{t("footer.tagline")}</div>
       </footer>
 
-      <BriefDialog t={resolved} whatsapp={wa} projectTypes={opts(pt)} footage={opts(ft)} platforms={opts(pl)} durations={opts(du)} budgets={opts(bu)} />
+      <BriefDialog lang={lang} t={resolved} whatsapp={wa} projectTypes={opts(pt)} footage={opts(ft)} platforms={opts(pl)} durations={opts(du)} budgets={opts(bu)} />
+      <ScrollProgress />
+      <ScrollTimeline label={t("timeline.label")} items={[{ id: "hero", label: t("timeline.start") }, { id: "about", label: t("nav.about") }, { id: "work", label: t("nav.work") }, { id: "process", label: t("nav.process") }, { id: "packages", label: t("nav.packages") }, { id: "contact", label: t("nav.contact") }]} />
+      <ReviewDialog t={resolved} whatsapp={wa} lang={lang} />
+      <Interactions t={resolved} />
+      <ContactFormHandler t={resolved} />
       <Effects />
     </>
   );

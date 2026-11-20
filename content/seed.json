@@ -140,7 +140,8 @@
       "en": "Share portfolio"
     },
     "contact.thanks": {
-      "ar": "THANK YOU FOR YOUR TIME WATCHING"
+      "ar": "THANK YOU\nFOR YOUR TIME\nWATCHING",
+      "en": "THANK YOU\nFOR YOUR TIME\nWATCHING"
     },
     "contactForm.name": {
       "ar": "الاسم",
@@ -296,6 +297,162 @@
     "brief.ph.notes": {
       "ar": "أي شي تاني بتحب تضيفه عن المشروع",
       "en": "Anything else you’d like to add about the project"
+    },
+    "nav.menu": {
+      "ar": "فتح القائمة",
+      "en": "Open menu"
+    },
+    "lang.switchTo.en": {
+      "ar": "Switch to English",
+      "en": "Switch to English"
+    },
+    "lang.switchTo.ar": {
+      "ar": "التبديل إلى العربية",
+      "en": "التبديل إلى العربية"
+    },
+    "meta.title": {
+      "ar": "يوسف سلامة — مونتير فيديو",
+      "en": "Yousef Salama — Video Editor"
+    },
+    "theme.toggle": {
+      "ar": "تبديل الوضع الليلي والنهاري",
+      "en": "Toggle light / dark mode"
+    },
+    "review.eyebrow": {
+      "ar": "رأي جديد",
+      "en": "New review"
+    },
+    "review.title": {
+      "ar": "شاركنا رأيك في العمل",
+      "en": "Share your thoughts on the work"
+    },
+    "review.name": {
+      "ar": "الاسم",
+      "en": "Name"
+    },
+    "review.role": {
+      "ar": "الصفة أو الجهة (اختياري)",
+      "en": "Role or company (optional)"
+    },
+    "review.rolePh": {
+      "ar": "مثلاً: صاحب متجر، يوتيوبر",
+      "en": "e.g. store owner, YouTuber"
+    },
+    "review.text": {
+      "ar": "رأيك",
+      "en": "Your review"
+    },
+    "review.textPh": {
+      "ar": "اكتب تجربتك مع الشغل (10 أحرف على الأقل)",
+      "en": "Write about your experience (10 characters minimum)"
+    },
+    "review.send": {
+      "ar": "إرسال الرأي",
+      "en": "Send review"
+    },
+    "review.sending": {
+      "ar": "جارٍ الإرسال…",
+      "en": "Sending…"
+    },
+    "review.wa": {
+      "ar": "أرسل الرأي عبر واتساب",
+      "en": "Send the review via WhatsApp"
+    },
+    "review.note": {
+      "ar": "يظهر الرأي في الموقع بعد مراجعته.",
+      "en": "Your review appears on the site after it is reviewed."
+    },
+    "review.errName": {
+      "ar": "اكتب اسمك (حرفان على الأقل).",
+      "en": "Enter your name (2 characters minimum)."
+    },
+    "review.errText": {
+      "ar": "اكتب رأيك (10 أحرف على الأقل).",
+      "en": "Write your review (10 characters minimum)."
+    },
+    "review.ok": {
+      "ar": "شكرًا لك! وصلنا رأيك وسيظهر بعد المراجعة.",
+      "en": "Thank you! We received your review; it will appear after review."
+    },
+    "review.fallback": {
+      "ar": "تعذّر الإرسال المباشر الآن. يمكنك إرسال رأيك عبر واتساب.",
+      "en": "Direct sending is unavailable right now. You can send your review via WhatsApp."
+    },
+    "review.limited": {
+      "ar": "محاولات كثيرة، جرّب لاحقًا.",
+      "en": "Too many attempts, try again later."
+    },
+    "review.invalid": {
+      "ar": "تأكد من الاسم والرأي ثم أعد المحاولة.",
+      "en": "Check the name and review, then try again."
+    },
+    "share.text": {
+      "ar": "شوف بورتفوليو يوسف سلامة",
+      "en": "Check out Yousef Salama's portfolio"
+    },
+    "share.copied": {
+      "ar": "✓ تم النسخ",
+      "en": "✓ Copied"
+    },
+    "share.manual": {
+      "ar": "انسخ الرابط من شريط العنوان",
+      "en": "Copy the link from the address bar"
+    },
+    "contactForm.sending": {
+      "ar": "جارٍ الإرسال…",
+      "en": "Sending…"
+    },
+    "contactForm.ok": {
+      "ar": "وصلتنا رسالتك، سنرد عليك قريبًا.",
+      "en": "Message received, we will reply soon."
+    },
+    "contactForm.errName": {
+      "ar": "اكتب اسمك (حرفان على الأقل).",
+      "en": "Enter your name (2 characters minimum)."
+    },
+    "contactForm.errEmail": {
+      "ar": "اكتب بريدًا إلكترونيًا صحيحًا.",
+      "en": "Enter a valid email address."
+    },
+    "contactForm.errMsg": {
+      "ar": "اكتب تفاصيل المشروع (10 أحرف على الأقل).",
+      "en": "Describe the project (10 characters minimum)."
+    },
+    "contactForm.limited": {
+      "ar": "محاولات كثيرة، جرّب لاحقًا.",
+      "en": "Too many attempts, try again later."
+    },
+    "contactForm.unavailable": {
+      "ar": "تعذّر الإرسال الآن. راسلنا عبر واتساب أو البريد.",
+      "en": "Could not send right now. Message us on WhatsApp or by email."
+    },
+    "brand.logoAlt": {
+      "ar": "logo",
+      "en": "logo"
+    },
+    "timeline.start": {
+      "ar": "البداية",
+      "en": "Start"
+    },
+    "timeline.label": {
+      "ar": "التنقل بين الأقسام",
+      "en": "Section navigation"
+    },
+    "nav.packages": {
+      "ar": "الباقات",
+      "en": "Packages"
+    },
+    "packages.title": {
+      "ar": "الباقات",
+      "en": "Packages"
+    },
+    "packages.idx": {
+      "ar": "05 / الباقات",
+      "en": "05 / Packages"
+    },
+    "packages.cta": {
+      "ar": "اطلب الباقة",
+      "en": "Request this package"
     }
   },
   "media": {
@@ -531,6 +688,53 @@
         "text": {
           "ar": "جولة أو جولتين ملاحظات، وبعدين تسليم الملفات بالصيغ والمقاسات المناسبة لكل منصة.",
           "en": "One or two rounds of notes, then delivery of the files in the right formats and sizes for each platform."
+        }
+      }
+    ],
+    "packages": [
+      {
+        "id": "pkg-1",
+        "name": {
+          "ar": "باقة 1",
+          "en": "Package 1"
+        },
+        "price": {
+          "ar": "0",
+          "en": "0"
+        },
+        "features": {
+          "ar": "ميزة 1-1\nميزة 1-2\nميزة 1-3",
+          "en": "Feature 1-1\nFeature 1-2\nFeature 1-3"
+        }
+      },
+      {
+        "id": "pkg-2",
+        "name": {
+          "ar": "باقة 2",
+          "en": "Package 2"
+        },
+        "price": {
+          "ar": "0",
+          "en": "0"
+        },
+        "features": {
+          "ar": "ميزة 2-1\nميزة 2-2\nميزة 2-3",
+          "en": "Feature 2-1\nFeature 2-2\nFeature 2-3"
+        }
+      },
+      {
+        "id": "pkg-3",
+        "name": {
+          "ar": "باقة 3",
+          "en": "Package 3"
+        },
+        "price": {
+          "ar": "0",
+          "en": "0"
+        },
+        "features": {
+          "ar": "ميزة 3-1\nميزة 3-2\nميزة 3-3",
+          "en": "Feature 3-1\nFeature 3-2\nFeature 3-3"
         }
       }
     ],
