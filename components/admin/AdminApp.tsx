@@ -91,6 +91,17 @@ export default function AdminApp({ data }: { data: AdminData }) {
     try { await api.checkAuth(); setConn("ok"); setStatus(null); }
     catch (e) { setConn("bad"); setStatus({ kind: "err", msg: friendlyError(e instanceof AdminApiError ? e.status : null, (e as Error).message) }); }
   }
+  const [pub, setPub] = useState<{ state: string; message: string } | null>(null);
+  useEffect(() => {
+    if (pub?.state !== "running" || !api?.publishStatus) return;
+    const t = setInterval(async () => { try { const st = await api.publishStatus!(); setPub(st); } catch { /* keep polling */ } }, 3000);
+    return () => clearInterval(t);
+  }, [pub?.state, api]);
+  async function publish() {
+    if (!api?.publish) return;
+    setPub({ state: "running", message: "جاري البدء…" });
+    try { await api.publish(); } catch (e) { setPub({ state: "error", message: e instanceof AdminApiError && e.status === 409 ? "عملية نشر جارية بالفعل." : e instanceof AdminApiError && e.status === 501 ? "النشر غير مفعّل على هذا السيرفر." : friendlyError(e instanceof AdminApiError ? e.status : null, (e as Error).message) }); }
+  }
   async function run(label: string, fn: (a: AdminApi) => Promise<void>) {
     if (!api) { setStatus({ kind: "err", msg: "السيرفر غير مربوط بالموقع، لذلك لا يمكن الحفظ الآن." }); return; }
     setBusy(true); setStatus(null);
@@ -132,6 +143,13 @@ export default function AdminApp({ data }: { data: AdminData }) {
       </header>
       {!ADMIN_API_BASE && <p className="adm-warn" role="alert">السيرفر غير مربوط بالموقع، فالصفحة للعرض فقط ولا يمكن الحفظ.</p>}
       {ADMIN_API_BASE && !token && <p className="adm-warn">اكتب كلمة السر في الأعلى ثم اضغط «تحقق» قبل أي تعديل.</p>}
+      {ADMIN_API_BASE && token && process.env.NEXT_PUBLIC_ENABLE_PUBLISH === "1" && (
+        <div className="adm-publish">
+          <button type="button" className="adm-primary" disabled={disabled || pub?.state === "running"} onClick={publish}>{pub?.state === "running" ? "جاري النشر…" : "انشر التعديلات على الموقع"}</button>
+          <small className="adm-hint">احفظ تعديلاتك أولاً، ثم اضغط هنا لتظهر للزوار. يستغرق عدة دقائق (تُضغط الفيديوهات الكبيرة تلقائياً). لا تُطفئ الجهاز أثناء ذلك.</small>
+          {pub && pub.state !== "idle" && <p className={pub.state === "error" ? "adm-err adm-banner" : "adm-ok adm-banner"} role="status">{pub.state === "done" ? "✓ " : ""}{pub.message}</p>}
+        </div>
+      )}
       {status && <p className={status.kind === "ok" ? "adm-ok adm-banner" : "adm-err adm-banner"} role="status">{status.msg}</p>}
 
       {tab === "media" && (

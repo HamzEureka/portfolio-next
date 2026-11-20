@@ -31,3 +31,5 @@
 .adm-item legend{font-weight:700;padding:0 6px}
 .adm-field>span{color:var(--text)}
 .adm section{padding:16px 0;border-bottom:0}
+
+.adm .adm-publish{display:grid;gap:8px;margin:12px 0;padding:14px;border:1px solid var(--adm-line,currentColor);border-radius:12px}

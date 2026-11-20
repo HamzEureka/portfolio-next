@@ -2,7 +2,8 @@
 /**
  * Portfolio API server. Zero dependencies (node:http, node:fs, node:crypto). Implements docs/admin-api-contract.md:
  *   admin (Bearer token): PUT /texts/{key}, PUT /media/{id}, POST /media/upload, PUT|DELETE /collections/{name}/{id},
- *                         PUT /collections/{name}/order, GET /inbox, GET /auth/check
+ *                         PUT /collections/{name}/order, GET /inbox, GET /auth/check,
+ *                         POST /publish, GET /publish/status (runs cfg.publish.cmd, e.g. scripts/publish.mjs)
  *   public: POST /reviews, POST /contact (honeypot `website`, rate limited), GET /uploads/{file}, GET /health
  * Content lives in <dataDir>/content.json, the SAME file the Next.js site reads (lib/content/index.ts), so run both from the repo root on one host.
  * Reviews/messages go to <dataDir>/reviews.json and messages.json (moderation = copy into the admin, nothing is auto-published).
@@ -10,9 +11,11 @@
 import { promises as fs, createReadStream } from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
+import { spawn } from "node:child_process";
 import { COLLECTION_NAMES, validKey, validateLText, validateItem, validateMedia, validateReview, validateContact } from "./validate.mjs";
 import { parseMultipart } from "./multipart.mjs";
 import { createLimiter } from "./ratelimit.mjs";
+import { signBrowserUpload, seal, unseal, privateName } from "./cloudinary.mjs";
 
 class HttpError extends Error { constructor(status, detail, headers) { super(detail); this.status = status; this.detail = detail; this.headers = headers; } }
 
@@ -68,15 +71,35 @@ export function createApp(cfg) {
     if (!d || typeof d !== "object" || !d.texts || !d.media || !d.collections) throw new Error("content file has an unexpected shape");
     return d;
   }
+  // Remote copy (Cloudinary): Render's disk is wiped on every restart, so JSON files are mirrored and restored at boot.
+  // content.json is public site data (stored as is); reviews/messages are encrypted with a key derived from ADMIN_TOKEN.
+  const remote = c.remote || null;
+  const remoteName = (file) => { const n = path.basename(file); return n === "content.json" ? n : privateName(n, c.token); };
+  async function remotePush(file) {
+    if (!remote) return;
+    try {
+      const raw = await fs.readFile(file);
+      await remote.push(remoteName(file), path.basename(file) === "content.json" ? raw : seal(raw, c.token));
+    } catch (e) { c.log("error", "remote push failed", e.message); throw new HttpError(502, "could not save to remote storage"); }
+  }
+  async function remoteRestore(file) {
+    if (!remote) return;
+    try { await fs.access(file); return; } catch { /* missing locally */ }
+    try {
+      const buf = await remote.pull(remoteName(file));
+      if (buf) { await fs.mkdir(path.dirname(file), { recursive: true }); await fs.writeFile(file, path.basename(file) === "content.json" ? buf : unseal(buf, c.token)); }
+    } catch (e) { c.log("error", "remote restore failed", path.basename(file), e.message); throw new Error("remote storage unreachable at startup: " + e.message); }
+  }
   /** fn(d) mutates `d` and returns undefined, or throws HttpError to abort without writing. */
-  const mutate = (fn) => withLock(async () => { const d = await loadContent(); const r = fn(d); await writeJsonAtomic(contentFile, d); return r; });
+  const mutate = (fn) => withLock(async () => { const d = await loadContent(); const r = fn(d); await writeJsonAtomic(contentFile, d); await remotePush(contentFile); return r; });
   const readList = async (file) => { try { const a = JSON.parse(await fs.readFile(file, "utf8")); return Array.isArray(a) ? a : []; } catch { return []; } };
   const appendList = (file, entry) => withLock(async () => {
-    const a = await readList(file); a.push(entry); await writeJsonAtomic(file, a.length > 2000 ? a.slice(-2000) : a);
+    const a = await readList(file); a.push(entry); await writeJsonAtomic(file, a.length > 2000 ? a.slice(-2000) : a); await remotePush(file);
   });
 
   const ready = (async () => {
     await fs.mkdir(uploadDir, { recursive: true });
+    for (const f of [contentFile, reviewsFile, messagesFile]) await remoteRestore(f);
     try { await fs.access(contentFile); } catch { await writeJsonAtomic(contentFile, await readSeed()); } // the site and the server share this file
   })();
 
@@ -115,6 +138,31 @@ export function createApp(cfg) {
   }
   const decode = (s) => { try { return decodeURIComponent(s); } catch { throw new HttpError(400, "bad url encoding"); } };
 
+  // ---------- publish (build the static site + deploy; runs a configurable command, one at a time) ----------
+  const pub = { state: "idle", message: "", at: null };
+  const pubStatusFile = cfg.publish?.statusFile;
+  async function publishStatus() {
+    if (pub.state === "running" && pubStatusFile) { try { const j = JSON.parse(await fs.readFile(pubStatusFile, "utf8")); if (j.state === "running" && j.message) return { ...pub, message: j.message }; } catch {} }
+    return pub;
+  }
+  function startPublish() {
+    if (!cfg.publish?.cmd) throw new HttpError(501, "publishing is not configured");
+    if (pub.state === "running") throw new HttpError(409, "publish already running");
+    Object.assign(pub, { state: "running", message: "starting", at: new Date(c.now()).toISOString() });
+    const [cmd, ...args] = cfg.publish.cmd;
+    let tail = "";
+    const p = spawn(cmd, args, { cwd: cfg.publish.cwd, stdio: ["ignore", "pipe", "pipe"], windowsHide: true, shell: false });
+    const keep = (d) => { tail = (tail + d).slice(-800); };
+    p.stdout.on("data", keep); p.stderr.on("data", keep);
+    p.on("error", (e) => { Object.assign(pub, { state: "error", message: String(e.message) }); });
+    p.on("close", async (code) => {
+      let msg = "";
+      if (pubStatusFile) { try { msg = JSON.parse(await fs.readFile(pubStatusFile, "utf8")).message || ""; } catch {} }
+      Object.assign(pub, code === 0 ? { state: "done", message: msg || "done" } : { state: "error", message: msg || tail.trim().split("\n").pop() || `exit ${code}` });
+      c.log?.("publish", pub.state, pub.message);
+    });
+  }
+
   // ---------- routes ----------
   async function route(req, res, url) {
     const segs = url.pathname.split("/").filter(Boolean).map(decode);
@@ -123,6 +171,9 @@ export function createApp(cfg) {
 
     if (a === "health" && segs.length === 1 && m === "GET") return send(res, 200, { ok: true });
     if (a === "auth" && b === "check" && segs.length === 2 && m === "GET") { requireAdmin(req); return send(res, 200, { ok: true }); }
+
+    if (a === "publish" && segs.length === 1 && m === "POST") { requireAdmin(req); startPublish(); return send(res, 202, { ok: true }); }
+    if (a === "publish" && b === "status" && segs.length === 2 && m === "GET") { requireAdmin(req); return send(res, 200, await publishStatus()); }
 
     if (a === "uploads" && segs.length === 2 && (m === "GET" || m === "HEAD")) return serveUpload(req, res, b);
 
@@ -159,6 +210,11 @@ export function createApp(cfg) {
       return send(res, 200, { ok: true });
     }
 
+    if (a === "media" && b === "sign" && segs.length === 2 && m === "POST") {
+      requireAdmin(req);
+      if (!c.cloudinary) throw new HttpError(501, "cloud uploads are not configured");
+      return send(res, 200, signBrowserUpload(c.cloudinary, c.now()));
+    }
     if (a === "media" && b === "upload" && segs.length === 2 && m === "POST") { requireAdmin(req); return upload(req, res); }
     if (a === "media" && segs.length === 2 && m === "PUT") {
       requireAdmin(req);

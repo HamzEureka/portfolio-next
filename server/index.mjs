@@ -2,11 +2,14 @@
 import http from "node:http";
 import path from "node:path";
 import { createApp } from "./app.mjs";
+import { parseCloudinaryUrl, createRemoteStore } from "./cloudinary.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
 const env = process.env;
 const list = (s) => (s || "").split(",").map((x) => x.trim()).filter(Boolean);
 
+const cld = parseCloudinaryUrl(env.CLOUDINARY_URL);
+if (env.CLOUDINARY_URL && !cld) { console.error("CLOUDINARY_URL is malformed. Expected cloudinary://API_KEY:API_SECRET@CLOUD_NAME"); process.exit(1); }
 let app;
 try {
   app = createApp({
@@ -16,6 +19,8 @@ try {
     allowedOrigins: list(env.ALLOWED_ORIGINS || "http://localhost:3000"),
     publicUrl: env.PUBLIC_URL || null,
     maxUploadBytes: (Number(env.MAX_UPLOAD_MB) || 100) * 1024 * 1024,
+    publish: env.PUBLISH_CMD === "off" ? null : { cmd: (env.PUBLISH_CMD || "node scripts/publish.mjs").split(/\s+/), cwd: root, statusFile: path.join(root, ".publish", "status.json") },
+    cloudinary: cld, remote: cld ? createRemoteStore(cld) : null,
     trustProxy: env.TRUST_PROXY === "1",
     log: (kind, ...a) => (kind === "error" ? console.error(new Date().toISOString(), ...a) : console.log(new Date().toISOString(), ...a)),
   });

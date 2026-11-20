@@ -384,3 +384,82 @@ test("prototype pollution attempts are refused or harmless", async () => {
   assert.equal(({} as Record<string, unknown>).polluted, undefined);
   assert.equal(Object.prototype.hasOwnProperty.call(content().texts, "constructor"), true);
 });
+
+// ---------- publish ----------
+test("POST /publish: admin only, 501 when not configured, runs one job at a time and reports status", async () => {
+  assert.equal((await call("POST", "/publish", undefined, {})).status, 401);
+  assert.equal((await call("POST", "/publish")).status, 501);
+  const b = await boot({ publish: { cmd: [process.execPath, "-e", "setTimeout(()=>{},400)"], cwd: process.cwd() }, limits: { authFail: { windowMs: 900000, max: 100000 }, admin: { windowMs: 60000, max: 100000 } } });
+  const h = { Authorization: `Bearer ${TOKEN}` };
+  try {
+    assert.equal((await fetch(b.url + "/publish", { method: "POST", headers: h })).status, 202);
+    assert.equal((await fetch(b.url + "/publish", { method: "POST", headers: h })).status, 409);
+    assert.equal(((await (await fetch(b.url + "/publish/status", { headers: h })).json()) as { state: string }).state, "running");
+    await new Promise((r) => setTimeout(r, 900));
+    assert.equal(((await (await fetch(b.url + "/publish/status", { headers: h })).json()) as { state: string }).state, "done");
+    assert.equal((await fetch(b.url + "/publish/status")).status, 401);
+  } finally { b.s.close(); }
+});
+test("failed publish command is reported as error", async () => {
+  const b = await boot({ publish: { cmd: [process.execPath, "-e", "console.error('boom');process.exit(3)"], cwd: process.cwd() } });
+  const h = { Authorization: `Bearer ${TOKEN}` };
+  try {
+    await fetch(b.url + "/publish", { method: "POST", headers: h });
+    await new Promise((r) => setTimeout(r, 700));
+    const j = (await (await fetch(b.url + "/publish/status", { headers: h })).json()) as { state: string; message: string };
+    assert.equal(j.state, "error"); assert.match(j.message, /boom/);
+  } finally { b.s.close(); }
+});
+
+// ---------- Cloudinary (signing + remote persistence, fake network) ----------
+import { signParams, parseCloudinaryUrl, seal, unseal, createRemoteStore } from "../server/cloudinary.mjs";
+test("Cloudinary signature matches the documented example", () => {
+  assert.equal(signParams({ eager: "w_400,h_300,c_pad|w_260,h_200,c_crop", public_id: "sample_image", timestamp: 1315060510 }, "abcd"), "bfd09f95f331f558cbd1320e67aa8d488770583e");
+  assert.deepEqual(parseCloudinaryUrl("cloudinary://123:sec_ret@mycloud"), { apiKey: "123", apiSecret: "sec_ret", cloudName: "mycloud" });
+  assert.equal(parseCloudinaryUrl("nope"), null);
+  assert.deepEqual(unseal(seal(Buffer.from("hi"), "k"), "k"), Buffer.from("hi"));
+  assert.throws(() => unseal(seal(Buffer.from("hi"), "k"), "other"));
+});
+test("POST /media/sign: admin only; 501 without Cloudinary; secret never returned", async () => {
+  assert.equal((await call("POST", "/media/sign")).status, 501);
+  const b = await boot({ cloudinary: { cloudName: "demo", apiKey: "k1", apiSecret: "SECRET-XYZ" } });
+  const h = { Authorization: `Bearer ${TOKEN}` };
+  try {
+    assert.equal((await fetch(b.url + "/media/sign", { method: "POST" })).status, 401);
+    const r = await fetch(b.url + "/media/sign", { method: "POST", headers: h });
+    const txt = await r.text(); const j = JSON.parse(txt);
+    assert.equal(j.url, "https://api.cloudinary.com/v1_1/demo/auto/upload");
+    assert.equal(j.fields.api_key, "k1"); assert.match(j.fields.signature, /^[0-9a-f]{40}$/); assert.ok(!txt.includes("SECRET-XYZ"));
+  } finally { b.s.close(); }
+});
+test("remote storage: edits survive a wipe of the local disk (Render restart)", async () => {
+  const mem = new Map<string, Buffer>();
+  const remote = { push: async (n: string, b: Buffer) => { mem.set(n, b); }, pull: async (n: string) => mem.get(n) ?? null };
+  const h = { Authorization: `Bearer ${TOKEN}`, ...J };
+  const a = await boot({ remote });
+  try {
+    assert.equal((await fetch(a.url + "/texts/hero.title", { method: "PUT", headers: h, body: JSON.stringify({ ar: "عنوان جديد" }) })).status, 200);
+    assert.equal((await fetch(a.url + "/contact", { method: "POST", headers: J, body: JSON.stringify({ name: "Ali", msg: "hello there friend", email: "a@b.co" }) })).status < 300, true);
+  } finally { a.s.close(); }
+  const names = [...mem.keys()];
+  assert.ok(names.includes("content.json"));
+  assert.ok(names.some((n) => n.endsWith("-messages.json")), "messages stored under a private name");
+  const stored = [...mem.entries()].find(([n]) => n.endsWith("-messages.json"))![1];
+  assert.ok(!stored.toString("utf8").includes("hello there"), "messages are encrypted remotely");
+  const b = await boot({ remote }); // fresh empty data dir
+  try {
+    const inbox = (await (await fetch(b.url + "/inbox", { headers: { Authorization: `Bearer ${TOKEN}` } })).json()) as { messages: { name: string }[] };
+    assert.equal(inbox.messages[0].name, "Ali");
+    assert.equal(JSON.parse(readFileSync(path.join(dir, "content.json"), "utf8")).texts["hero.title"].ar, "عنوان جديد");
+  } finally { b.s.close(); }
+});
+test("remote store talks to Cloudinary with signed requests (fake fetch)", async () => {
+  const seen: { url: string; method?: string }[] = [];
+  const f = (async (url: string, init: { method?: string } = {}) => { seen.push({ url, method: init.method }); return url.includes("/resources/raw") ? new Response(JSON.stringify({ secure_url: "https://res.cloudinary.com/x/raw/upload/v1/portfolio/data-a.json" })) : new Response("DATA"); }) as never;
+  const st = createRemoteStore({ cloudName: "demo", apiKey: "k", apiSecret: "s" }, f);
+  await st.push("a.json", Buffer.from("{}"));
+  assert.equal(seen[0].url, "https://api.cloudinary.com/v1_1/demo/raw/upload");
+  assert.equal((await st.pull("a.json"))!.toString(), "DATA");
+  const nf = createRemoteStore({ cloudName: "demo", apiKey: "k", apiSecret: "s" }, (async () => new Response("", { status: 404 })) as never);
+  assert.equal(await nf.pull("zzz"), null);
+});
